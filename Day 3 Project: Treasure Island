@@ -1,0 +1,59 @@
+print('''
+*******************************************************************************
+          |                   |                  |                     |
+ _________|________________.=""_;=.______________|_____________________|_______
+|                   |  ,-"_,=""     `"=.|                  |
+|___________________|__"=._o`"-._        `"=.______________|___________________
+          |                `"=._o`"=._      _`"=._                     |
+ _________|_____________________:=._o "=._."_.-="'"=.__________________|_______
+|                   |    __.--" , ; `"=._o." ,-"""-._ ".   |
+|___________________|_._"  ,. .` ` `` ,  `"-._"-._   ". '__|___________________
+          |           |o`"=._` , "` `; .". ,  "-._"-._; ;              |
+ _________|___________| ;`-.o`"=._; ." ` '`."\` . "-._ /_______________|_______
+|                   | |o;    `"-.o`"=._``  '` " ,__.--o;   |
+|___________________|_| ;     (#) `-.o `"=.`_.--"_o.-; ;___|___________________
+____/______/______/___|o;._    "      `".o|o_.--"    ;o;____/______/______/____
+/______/______/______/_"=._o--._        ; | ;        ; ;/______/______/______/_
+____/______/______/______/__"=._o--._   ;o|o;     _._;o;____/______/______/____
+/______/______/______/______/____"=._o._; | ;_.--"o.--"_/______/______/______/_
+____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
+/______/______/______/______/______/______/______/______/______/______/_____ /
+*******************************************************************************
+''')
+print("Welcome to Treasure Island.")
+print("Your mission is to find the treasure.") 
+
+choice1 = input("You locate a barell in the middle of the sea, do you want to pick it up?(Y/N)").upper()
+
+if choice1 == 'Y':
+  print("A boy comes out of the barrel, you saved him!")
+  choice2 = input("Will you help the boy?(Y/N)").upper()
+  if choice2 == 'Y':
+    print("Boy thanks you and gives you a map to the treasure")
+    choice3 = input("Your ship reaches the foot of a huge mountain, to the right is an ice island and to left a fire island, do you wish to turn left, right, or continue straight up the mountain?(R/L/S) ").upper()
+    if choice3 == 'S':
+      print("You take a tide up the mountain")
+      choice4 = input("Going down the mountain you see a colossal whale, do you wish to engage?(Y/N)").upper()
+      if choice4 == 'Y':
+        print("You were eaten by the whale") 
+        choice5b = input("Inside the mouth of the whale see a bright light coming from deeper in, do you continue straight or turn back to her mouth?(S/B)").upper()
+        if choice5b == 'S':
+          print("You find the treasure inside the belly of the whale and manage to escape through its blowhole, YOU WIN!")
+        else:
+          print("You get crushed by the whale's teeth")
+      else:
+        print("Continue Sailing")
+        choice5a = input("Your ship is headed toward a massive storm, will you continue forward?(Y/N)").upper()
+        if choice5a == 'Y':
+          print("Shipwreck, Game Over")
+        else:
+          print("No treasure is found, Game Over")
+    elif choice3 == 'L':
+      print("Caught it blizzard, Game Over")
+    else:
+      print("Scorched, Game Over")
+  else:
+    print("Game Over")
+else:
+  print("Game Over")
+
