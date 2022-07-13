@@ -1,0 +1,137 @@
+logo = '''   ____       __  __      __  __            _     _            
+  / ___|___  / _|/ _| ___|  \/  | __ _  ___| |__ (_)_ __   ___ 
+ | |   / _ \| |_| |_ / _ \ |\/| |/ _` |/ __| '_ \| | '_ \ / _ |
+ | |__| (_) |  _|  _|  __/ |  | | (_| | (__| | | | | | | |  __/
+  \____\___/|_| |_|  \___|_|  |_|\__,_|\___|_| |_|_|_| |_|\___|
+                                                               '''
+
+MENU = {
+    "espresso": {
+        "ingredients": {
+            "water": 50,
+            "milk": 0,
+            "coffee": 18,
+        },
+        "cost": 1.5,
+    },
+    "latte": {
+        "ingredients": {
+            "water": 200,
+            "milk": 150,
+            "coffee": 24,
+        },
+        "cost": 2.5,
+    },
+    "cappuccino": {
+        "ingredients": {
+            "water": 250,
+            "milk": 100,
+            "coffee": 24,
+        },
+        "cost": 3.0,
+    },
+    "report": {
+        "ingredients": {
+            "water": 0,
+            "milk": 0,
+            "coffee": 0,
+        }
+    }
+}
+
+resources = {
+    "water": 300,
+    "milk": 200,
+    "coffee": 100
+}
+
+
+def is_enough():
+    """"Function calculates if there is enough resources to make the drinks."""
+    if water_amount < water_cost:
+        return "Sorry there is not enough water."
+    elif milk_amount < milk_cost:
+        return "Sorry there is not enough milk."
+    elif coffee_amount < coffee_cost:
+        return "Sorry there is not enough coffee"
+    else:
+        return 1
+
+
+def generate_report(MENU, resources):
+    """Function that calculates remaining resources and returns a report."""
+    if choice == 'espresso':
+        resources["water"] -= MENU["espresso"]["ingredients"]["water"]
+        resources["coffee"] -= MENU["espresso"]["ingredients"]["coffee"]
+    elif choice == 'latte':
+        resources["water"] -= MENU["latte"]["ingredients"]["water"]
+        resources["milk"] -= MENU["latte"]["ingredients"]["milk"]
+        resources["coffee"] -= MENU["latte"]["ingredients"]["coffee"]
+    elif choice == 'cappuccino':
+        resources["water"] -= MENU["cappuccino"]["ingredients"]["water"]
+        resources["milk"] -= MENU["cappuccino"]["ingredients"]["milk"]
+        resources["coffee"] -= MENU["cappuccino"]["ingredients"]["coffee"]
+    elif choice == 'report':
+        return resources
+
+
+def calculate_change():
+    """Function that calculates remaining change based on order, and also if money is enough to place order."""
+    quarter_val = 0.25
+    dime_val = 0.1
+    nickel_val = 0.05
+    penny_val = 0.01
+    money_in = ((quarter_val*quarters)+(dime_val*dimes)+(nickel_val*nickles)+(penny_val*pennies))
+    if choice == 'espresso':
+        cost = 1.5
+        if money_in >= cost:
+            change = abs(round(cost - money_in, 2))
+            return f"Here is ${change} in change\nHere is your {choice} ☕️. Enjoy!"
+        else:
+            return "Sorry that's not enough money. Money refunded."
+    elif choice == 'latte':
+        cost = 2.5
+        if money_in >= cost:
+            change = abs(round(cost - money_in, 2))
+            return f"Here is ${change} in change\nHere is your {choice} ☕️. Enjoy!"
+        else:
+            return "Sorry that's not enough money. Money refunded."
+    elif choice == 'cappuccino':
+        cost = 3.0
+        if money_in >= cost:
+            change = abs(round(cost - money_in, 2))
+            return f"Here is ${change} in change\nHere is your {choice} ☕️. Enjoy!"
+        else:
+            return "Sorry that's not enough money. Money refunded."
+
+
+print(logo)
+is_true = True
+while is_true:
+    choice = input("What would you like? (espresso/latte/cappuccino): ").lower()
+    water_amount = resources["water"]
+    milk_amount = resources["milk"]
+    coffee_amount = resources["coffee"]
+
+    water_cost = MENU[choice]["ingredients"]["water"]
+    milk_cost = MENU[choice]["ingredients"]["milk"]
+    coffee_cost = MENU[choice]["ingredients"]["coffee"]
+
+    if is_enough() == 1:
+        if choice == "espresso" or choice == "latte" or choice == "cappuccino":
+            print("Please insert coin")
+            quarters = int(input("How many quarters?: "))
+            dimes = int(input("How many dimes?: "))
+            nickles = int(input("How many nickles?: "))
+            pennies = int(input("How many pennies?: "))
+            print(calculate_change())
+            generate_report(MENU, resources)
+
+        elif choice == "report":
+            print(generate_report(MENU, resources))
+    else:
+        print(is_enough())
+
+
+
+
